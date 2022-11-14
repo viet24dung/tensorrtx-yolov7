@@ -1407,7 +1407,7 @@ ICudaEngine* build_engine_yolov7x(unsigned int maxBatchSize,IBuilder* builder, I
 
     //-------第二个MPC3----------
     IPoolingLayer* mp2 = network->addPoolingNd(*conv28->getOutput(0), PoolingType::kMAX, DimsHW{ 2, 2 });
-    mp1->setStrideNd(DimsHW{ 2, 2 });
+    mp2->setStrideNd(DimsHW{ 2, 2 });
     IElementWiseLayer* conv30 = convBnSilu(network, weightMap, *mp2->getOutput(0), 320, 1, 1, 0, "model.30"); // 左侧分支
 
     IElementWiseLayer* conv31 = convBnSilu(network, weightMap, *conv28->getOutput(0), 320, 1, 1, 0, "model.31");
@@ -1434,7 +1434,7 @@ ICudaEngine* build_engine_yolov7x(unsigned int maxBatchSize,IBuilder* builder, I
 
     //-------第三个MPC3----------
     IPoolingLayer* mp3 = network->addPoolingNd(*conv43->getOutput(0), PoolingType::kMAX, DimsHW{ 2, 2 });
-    mp1->setStrideNd(DimsHW{ 2, 2 });
+    mp3->setStrideNd(DimsHW{ 2, 2 });
     IElementWiseLayer* conv45 = convBnSilu(network, weightMap, *mp3->getOutput(0), 640, 1, 1, 0, "model.45"); // 左侧分支
 
     IElementWiseLayer* conv46 = convBnSilu(network, weightMap, *conv43->getOutput(0), 640, 1, 1, 0, "model.46");
